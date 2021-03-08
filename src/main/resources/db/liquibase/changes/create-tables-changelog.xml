@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+    <changeSet author="root" id="1">
+        <createTable tableName="city">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="latitude" type="DOUBLE(8,6)"/>
+            <column name="longitude" type="DOUBLE(8,6)"/>
+        </createTable>
+        <createTable tableName="distance">
+            <column autoIncrement="true" name="id" type="INTEGER">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="actor_pkey"/>
+            </column>
+            <column name="from_city" type="VARCHAR(255)"/>
+            <column name="to_city" type="VARCHAR(255)"/>
+            <column name="distance" type="INTEGER"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

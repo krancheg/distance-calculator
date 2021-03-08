@@ -3,7 +3,7 @@ package com.example.DistanceCalculator.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "City")
+@Table(name = "city")
 public class City {
 
     @Id
@@ -12,11 +12,11 @@ public class City {
 
     private String name;
 
-    private long latitude;
+    private double latitude;
 
-    private long longitude;
+    private double longitude;
 
-    public City(String name, long latitude, long longitude) {
+    public City(String name, double latitude, double longitude) {
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -41,19 +41,19 @@ public class City {
         this.name = name;
     }
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

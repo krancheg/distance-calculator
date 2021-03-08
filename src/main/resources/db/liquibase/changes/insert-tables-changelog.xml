@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+    <changeSet author="root" id="2">
+        <preConditions>
+            <dbms type="mysql"/>
+        </preConditions>
+        <insert tableName="city">
+            <column name="name" value="Moscow"/>
+            <column name="latitude" valueNumeric="55.753000"/>
+            <column name="longitude" valueNumeric="37.609050"/>
+        </insert>
+        <insert tableName="city">
+            <column name="name" value="Samara"/>
+            <column name="latitude" valueNumeric="53.191710"/>
+            <column name="longitude" valueNumeric="50.190910"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city" value="Moscow"/>
+            <column name="to_city" value="Peterburg"/>
+            <column name="distance" valueNumeric="712"/>
+        </insert>
+        <insert tableName="distance">
+            <column name="from_city" value="Samara"/>
+            <column name="to_city" value="Penza"/>
+            <column name="distance" valueNumeric="419"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

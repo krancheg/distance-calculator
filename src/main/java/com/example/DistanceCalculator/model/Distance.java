@@ -10,8 +10,10 @@ public class Distance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "from_city")
     private String fromCity;
 
+    @Column(name = "to_city")
     private String toCity;
 
     private long distance;
