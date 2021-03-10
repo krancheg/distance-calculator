@@ -1,8 +1,7 @@
-package com.example.DistanceCalculator;
+package com.example.DistanceCalculator.service;
 
 import com.example.DistanceCalculator.model.City;
-import com.example.DistanceCalculator.service.CalculateDistance;
-import com.example.DistanceCalculator.service.CityService;
+import com.example.DistanceCalculator.model.response.ResultDistance;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,8 +43,12 @@ public class CityServiceTest {
 
     @Test
     public void ValidateStraightDistance() {
-        long distance = calculateDistance.straightDistance("TestCity1","TestCity2");
-        Assert.isTrue(distance==2652,"Distance not correct");
+        List<String> city1 = new ArrayList<>();
+        city1.add("TestCity1");
+        List<String> city2 = new ArrayList<>();
+        city2.add("TestCity2");
+        List<ResultDistance> distance = calculateDistance.straightDistanceList(city1,city2);
+        Assert.isTrue(distance.get(0).getDistance()==2652,"Distance not correct");
     }
 
     @AfterEach
@@ -53,6 +56,4 @@ public class CityServiceTest {
         cityService.deleteCity("TestCity1");
         cityService.deleteCity("TestCity2");
     }
-
-
 }

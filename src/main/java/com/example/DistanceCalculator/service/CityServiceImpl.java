@@ -2,9 +2,11 @@ package com.example.DistanceCalculator.service;
 
 import com.example.DistanceCalculator.model.City;
 import com.example.DistanceCalculator.repository.CityRepository;
+import com.example.DistanceCalculator.model.response.ResultCity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,5 +37,12 @@ public class CityServiceImpl implements CityService {
         if (city==null)
             return;
         cityRepository.deleteById(city.getId());
+    }
+
+    @Override
+    public List<ResultCity> listOfCites() {
+        List<ResultCity> resultCityList = new ArrayList<>();
+        cityRepository.findAll().forEach((v) -> resultCityList.add(new ResultCity(v.getId(),v.getName())));
+        return resultCityList;
     }
 }

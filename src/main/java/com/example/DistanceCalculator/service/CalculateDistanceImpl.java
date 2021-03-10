@@ -4,8 +4,12 @@ import com.example.DistanceCalculator.model.City;
 import com.example.DistanceCalculator.model.Distance;
 import com.example.DistanceCalculator.repository.CityRepository;
 import com.example.DistanceCalculator.repository.DistanceRepository;
+import com.example.DistanceCalculator.model.response.ResultDistance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CalculateDistanceImpl implements CalculateDistance {
@@ -20,20 +24,42 @@ public class CalculateDistanceImpl implements CalculateDistance {
         this.distanceRepository = distanceRepository;
     }
 
-    @Override
-    public long straightDistance(String fromCity, String toCity) {
+    private long straightDistance(String fromCity, String toCity) {
         City cityFrom = cityRepository.findFirstByName(fromCity);
         City cityTo = cityRepository.findFirstByName(toCity);
         if (cityFrom == null || cityTo == null)
-            return 0;
+            return -1;
         return (long) (distVincenty(cityFrom.getLatitude(),cityFrom.getLongitude(),
                 cityTo.getLatitude(),cityTo.getLongitude())/1000);
     }
 
-    @Override
-    public long matrixDistance(String fromCity, String toCity) {
+    private long matrixDistance(String fromCity, String toCity) {
         Distance distance = distanceRepository.findFirstByFromCityAndToCity(fromCity, toCity);
-        return (distance == null) ? 0 : distance.getDistance();
+        return (distance == null) ? -1 : distance.getDistance();
+    }
+
+    @Override
+    public List<ResultDistance> straightDistanceList(List<String> fromCityList, List<String> toCityList) {
+        List<ResultDistance> resultDistancesList = new ArrayList<>();
+        for (String fromCity : fromCityList)
+            for (String toCity : toCityList) {
+                long distance = straightDistance(fromCity, toCity);
+                if (distance >= 0)
+                    resultDistancesList.add(new ResultDistance(fromCity, toCity, distance));
+            }
+        return resultDistancesList;
+    }
+
+    @Override
+    public List<ResultDistance> matrixDistanceList(List<String> fromCityList, List<String> toCityList) {
+        List<ResultDistance> resultDistancesList = new ArrayList<>();
+        for (String fromCity : fromCityList)
+            for (String toCity : toCityList) {
+                long distance = matrixDistance(fromCity, toCity);
+                if (distance >= 0)
+                    resultDistancesList.add(new ResultDistance(fromCity, toCity, distance));
+            }
+        return resultDistancesList;
     }
 
     /**
@@ -96,5 +122,4 @@ public class CalculateDistanceImpl implements CalculateDistance {
 
         return dist;
     }
-
 }

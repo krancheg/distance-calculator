@@ -1,9 +1,13 @@
 package com.example.DistanceCalculator.service;
 
+import com.example.DistanceCalculator.model.response.ResultDistance;
+
+import java.util.List;
+
 public interface CalculateDistance {
 
-    long straightDistance(String fromCity, String toCity);
+    List<ResultDistance> straightDistanceList(List<String> fromCityList, List<String> toCityList);
 
-    long matrixDistance(String fromCity, String toCity);
+    List<ResultDistance> matrixDistanceList(List<String> fromCityList, List<String> toCityList);
 
 }
