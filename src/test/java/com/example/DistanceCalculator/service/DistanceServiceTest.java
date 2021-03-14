@@ -17,11 +17,13 @@ public class DistanceServiceTest {
 
     private final CalculateDistance calculateDistance;
     private final DistanceService distanceService;
+    private final CityService cityService;
 
     @Autowired
-    public DistanceServiceTest(CalculateDistance calculateDistance, DistanceService distanceService) {
+    public DistanceServiceTest(CalculateDistance calculateDistance, DistanceService distanceService, CityService cityService) {
         this.calculateDistance = calculateDistance;
         this.distanceService = distanceService;
+        this.cityService = cityService;
     }
 
     @BeforeEach
@@ -40,7 +42,7 @@ public class DistanceServiceTest {
     @Test
     public void getCityFromBase() {
         Distance distance = distanceService.getDistanceByCites("TestCity1","TestCity2");
-        Assert.isTrue(distance.getDistance()==675,"Distance in base not correct");
+        Assert.isTrue(distance.getDistance()==2346,"Distance in base not correct");
     }
 
     @Test
@@ -50,11 +52,12 @@ public class DistanceServiceTest {
         List<String> city2 = new ArrayList<>();
         city2.add("TestCity2");
         List<ResultDistance> distance = calculateDistance.matrixDistanceList(city1,city2);
-        Assert.isTrue(distance.get(0).getDistance()==675, "Distance not correct");
+        Assert.isTrue(distance.get(0).getDistance()==2346, "Distance not correct");
+
     }
 
     @AfterEach
     public void deleteTestDistances() {
-        distanceService.deleteByCites("TestDistance1","TestDistance2");
+        distanceService.deleteByCites("TestCity1","TestCity2");
     }
 }
