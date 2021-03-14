@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<root>
+    <cites>
+        <city xsi:type="city" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <name>Kazan</name>
+            <latitude>55.79</latitude>
+            <longitude>49.12</longitude>
+        </city>
+        <city xsi:type="city" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <name>Volgograd</name>
+            <latitude>48.72</latitude>
+            <longitude>44.50</longitude>
+        </city>
+    </cites>
+</root>

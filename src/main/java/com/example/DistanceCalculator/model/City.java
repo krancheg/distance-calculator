@@ -1,6 +1,7 @@
 package com.example.DistanceCalculator.model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.*;
 
 @Entity
 @Table(name = "city")
@@ -25,10 +26,12 @@ public class City {
     public City() {
     }
 
+
     public long getId() {
         return id;
     }
 
+    @XmlTransient
     public void setId(long id) {
         this.id = id;
     }
@@ -37,6 +40,7 @@ public class City {
         return name;
     }
 
+    @XmlElement
     public void setName(String name) {
         this.name = name;
     }
@@ -45,6 +49,7 @@ public class City {
         return latitude;
     }
 
+    @XmlElement
     public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
@@ -53,6 +58,7 @@ public class City {
         return longitude;
     }
 
+    @XmlElement
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }

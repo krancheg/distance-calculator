@@ -59,7 +59,7 @@ public class CalculateControllerTest {
     }
 
     @Test
-    void calculateDistanceCrowflight() {
+    public void calculateDistanceCrowflight() {
         CalculateParams calculateParams = new CalculateParams("Crowflight",listCites1,listCites2);
         HttpEntity<CalculateParams> httpEntity = new HttpEntity<>(calculateParams);
         ResponseEntity<List<ResultDistance>> response = testRestTemplate.exchange("/calculate", HttpMethod.POST,
@@ -71,7 +71,7 @@ public class CalculateControllerTest {
     }
 
     @Test
-    void calculateDistanceDistanceMatrix() {
+    public void calculateDistanceDistanceMatrix() {
         CalculateParams calculateParams = new CalculateParams("Distance Matrix",listCites1,listCites2);
         HttpEntity<CalculateParams> httpEntity = new HttpEntity<>(calculateParams);
         ResponseEntity<List<ResultDistance>> response = testRestTemplate.exchange("/calculate", HttpMethod.POST,
@@ -83,7 +83,7 @@ public class CalculateControllerTest {
     }
 
     @Test
-    void calculateDistanceAll() {
+    public void calculateDistanceAll() {
         CalculateParams calculateParams = new CalculateParams("All",listCites1,listCites2);
         HttpEntity<CalculateParams> httpEntity = new HttpEntity<>(calculateParams);
         ResponseEntity<List<ResultDistance>> response = testRestTemplate.exchange("/calculate", HttpMethod.POST,
