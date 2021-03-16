@@ -26,15 +26,16 @@ public class DistanceServiceImpl implements DistanceService {
 
     @Override
     public Distance getDistanceByCites(String fromCity, String toCity) {
-        return distanceRepository.findFirstByFromCityAndToCity(fromCity, toCity);
+        Distance distance = distanceRepository.findFirstByFromCityAndToCity(fromCity, toCity);
+        return (distance == null) ? new Distance() : distance;
     }
 
     @Override
     public void deleteByCites(String fromCity, String toCity) {
-        Distance distanceObject = distanceRepository.findFirstByFromCityAndToCity(fromCity, toCity);
-        if (distanceObject==null)
+        Distance distance = distanceRepository.findFirstByFromCityAndToCity(fromCity, toCity);
+        if (distance==null)
             return;
-        distanceRepository.deleteById(distanceObject.getId());
+        distanceRepository.deleteById(distance.getId());
     }
 
 }

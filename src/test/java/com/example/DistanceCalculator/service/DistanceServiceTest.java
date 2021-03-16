@@ -35,8 +35,8 @@ public class DistanceServiceTest {
 
     @Test
     public void getDistanceNotNull() {
-        Distance distance = distanceService.getDistanceByCites("TestCity1","TestCity2");
-        Assert.notNull(distance,"The Distance not found in database");
+        Distance distance = distanceService.getDistanceByCites("null","TestCity2");
+        Assert.notNull(distance,"Return null in distanceService.getDistanceByCites");
     }
 
     @Test

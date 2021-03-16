@@ -3,11 +3,7 @@ package com.example.DistanceCalculator.service;
 import com.example.DistanceCalculator.model.City;
 import com.example.DistanceCalculator.model.Distance;
 import com.example.DistanceCalculator.model.JAXB.XmlContainer;
-import com.example.DistanceCalculator.repository.CityRepository;
-import com.example.DistanceCalculator.repository.DistanceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

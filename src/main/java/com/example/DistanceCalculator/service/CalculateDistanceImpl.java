@@ -2,8 +2,6 @@ package com.example.DistanceCalculator.service;
 
 import com.example.DistanceCalculator.model.City;
 import com.example.DistanceCalculator.model.Distance;
-import com.example.DistanceCalculator.repository.CityRepository;
-import com.example.DistanceCalculator.repository.DistanceRepository;
 import com.example.DistanceCalculator.model.response.ResultDistance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,28 +12,25 @@ import java.util.List;
 @Service
 public class CalculateDistanceImpl implements CalculateDistance {
 
-    private final CityRepository cityRepository;
-
-    private final DistanceRepository distanceRepository;
+    private CityService cityService;
+    private DistanceService distanceService;
 
     @Autowired
-    public CalculateDistanceImpl(CityRepository cityRepository, DistanceRepository distanceRepository) {
-        this.cityRepository = cityRepository;
-        this.distanceRepository = distanceRepository;
+    public CalculateDistanceImpl(CityService cityService, DistanceService distanceService) {
+        this.cityService = cityService;
+        this.distanceService = distanceService;
     }
 
     private long straightDistance(String fromCity, String toCity) {
-        City cityFrom = cityRepository.findFirstByName(fromCity);
-        City cityTo = cityRepository.findFirstByName(toCity);
-        if (cityFrom == null || cityTo == null)
-            return -1;
+        City cityFrom = cityService.getCityByName(fromCity);
+        City cityTo = cityService.getCityByName(toCity);
         return (long) (distVincenty(cityFrom.getLatitude(),cityFrom.getLongitude(),
                 cityTo.getLatitude(),cityTo.getLongitude())/1000);
     }
 
     private long matrixDistance(String fromCity, String toCity) {
-        Distance distance = distanceRepository.findFirstByFromCityAndToCity(fromCity, toCity);
-        return (distance == null) ? -1 : distance.getDistance();
+        Distance distance = distanceService.getDistanceByCites(fromCity, toCity);
+        return distance.getDistance();
     }
 
     @Override

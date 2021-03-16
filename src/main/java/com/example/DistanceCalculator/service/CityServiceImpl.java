@@ -28,7 +28,8 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public City getCityByName(String cityName) {
-        return cityRepository.findFirstByName(cityName);
+        City city = cityRepository.findFirstByName(cityName);
+        return (city == null) ? new City() : city;
     }
 
     @Override
